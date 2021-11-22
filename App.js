@@ -5,10 +5,28 @@ export default function App() {
   const [peso, setPeso] = useState(''); // armazena o peso
   const [altura, setAltura] = useState(''); // armazena a altura
 
+  function limpar() {
+    setPeso("")
+    setAltura("")
+  }
+
   function executarCalculos() {
     const alt = altura / 100; {/* convertendo de cm para m */}
     const imc = peso / (alt * alt);
-    alert(imc.toFixed(2));
+    
+    if (imc < 18.6) {
+      alert('Você está abaixo do peso - IMC = ' + imc.toFixed(2));
+      limpar()
+    } else if (imc >= 18.6 && imc < 24.9) {
+      alert('Você está com peso ideal - IMC = ' + imc.toFixed(2));
+      limpar()
+    } else if (imc >= 24.9 && imc < 34.9) {
+      alert('Você está levemente acima do peso - IMC = ' + imc.toFixed(2));
+      limpar()
+    } else if (imc >= 34.9) {
+      alert('Você está acima do peso - IMC = ' + imc.toFixed(2));
+      limpar()
+    }
   }
 
   return (
